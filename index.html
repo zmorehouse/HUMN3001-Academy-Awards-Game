@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Score Guessing Game</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+    <div id="overlay">
+        <div class="spinner"></div>
+    </div>
+    <div id="content">
+        
+    </div>
+    <div class="headersection">
+        <div style="width:25%;"></div>
+        <div style="width:50%;"><h1 style="text-align:center;"> Oscars Guessing Game</h1>
+        <p style="text-align:center;">
+            Tagline about the guessing game.
+        </p></div>
+        <div style="width:25%; display:flex;justify-content:center;">
+            <label class="switch">
+                <input type="checkbox" id="audienceScoreToggle">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        
+    </div>
+
+    </div>
+    <div class="middle">
+    <div style="width:25%;"></div>
+    <div id="movieContainer">
+        <div id="movieTitles">
+            <!-- Movie titles and posters will be displayed here -->
+        </div>
+        <p id="result"></p> <!-- Display the result here -->
+        <button id="tryAgainBtn">Try Again</button> <!-- "Try Again" button -->
+    </div>
+    <div style="width:25%;">
+        <div id="scorecounter">
+            <h2>
+                Score: <span id="score">0</span>
+            </h2>
+        </div>
+    </div>
+    </div>
+
+    <div class="bottom">
+        <h2 style="text-align:center;"> Which of these best picture nominees is preferred by general audiences?</h2>
+        <p style="text-align:center;">*General Audience scores are an aggregate from iMDB, RT Audience Score and MC Audience Score</p>
+    </div>
+    
+    <script src="movies_data.js"></script>
+    <script src="custom.js"></script>
+</body>
+</html>
