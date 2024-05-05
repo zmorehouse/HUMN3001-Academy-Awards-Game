@@ -437,3 +437,12 @@ padding-bottom:135px;
   margin:0px;
   font-size:50px;
 }
+
+#highestScore {
+margin-top:15px;
+  font-weight:900;
+}
+
+#score {
+	margin-top: 10px !important;
+}

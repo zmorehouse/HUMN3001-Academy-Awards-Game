@@ -804,9 +804,9 @@ function getCookie(name) {
 function updateDisplayedHighestScore() {
     const highestScore = getCookie('highest_score');
     if (highestScore) {
-        document.getElementById('highestScore').innerText = `Highest Score: ${highestScore}`;
+        document.getElementById('highestScore').innerText = `HI SCORE: ${highestScore}`;
     } else {
-        document.getElementById('highestScore').innerText = 'Highest Score: None';
+        document.getElementById('highestScore').innerText = 'HI SCORE: 0';
     }
 }
 
