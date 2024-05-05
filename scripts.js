@@ -737,6 +737,8 @@ function checkUserChoice(userChoiceIndex) {
     // Update the score displayed on the page
     document.getElementById('score').innerText = score;
 
+    updateHighestScore(score);
+
     // Populate the score fields with the scores of the movies
 
     document.getElementById('movie1Score').innerText = scoreToCompare1;
@@ -783,4 +785,41 @@ function resetScores() {
     document.getElementById('movie1Score').innerText = '';
     document.getElementById('movie2Score').innerText = '';
     
+}
+
+// Function to set a cookie
+function setCookie(name, value, days) {
+    const expires = new Date();
+    expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
+}
+
+// Function to get a cookie
+function getCookie(name) {
+    const keyValue = document.cookie.match(`(^|;) ?${name}=([^;]*)(;|$)`);
+    return keyValue ? keyValue[2] : null;
+}
+
+// Function to update the displayed highest score
+function updateDisplayedHighestScore() {
+    const highestScore = getCookie('highest_score');
+    if (highestScore) {
+        document.getElementById('highestScore').innerText = `Highest Score: ${highestScore}`;
+    } else {
+        document.getElementById('highestScore').innerText = 'Highest Score: None';
+    }
+}
+
+// Call the function to update the displayed highest score after loading the page
+window.onload = function() {
+    updateDisplayedHighestScore();
+};
+
+// Update the highest score after updating the highest score cookie
+function updateHighestScore(score) {
+    const highestScore = parseInt(getCookie('highest_score')) || 0;
+    if (score > highestScore) {
+        setCookie('highest_score', score, 365); // Store the highest score for 1 year
+        updateDisplayedHighestScore(); // Update the displayed highest score
+    }
 }
