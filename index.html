@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Guessing Game</title>
     <link rel="stylesheet" href="styles.css">
-</head>
+    <script src="https://kit.fontawesome.com/bf64e8a004.js" crossorigin="anonymous"></script></head>
 
 <body>
     <!-- Spinner -->
@@ -19,18 +19,21 @@
         <!-- Popup -->
         <div id="popupOverlay">
             <div id="popupContent">
-                <h2>Welcome to the Oscars Guessing Game!</h2>
-                <p>Guess which movie has a higher score among the two displayed. Click on the movie title or poster to
-                    make your choice.</p>
-                <button id="playBtn">Let's Play!</button>
+
+                <h2 style="font-weight:900; text-align:left;">Welcome to Zac's Academy Awards Guessing Game</h2>
+                <p>This game is part of a research project I'm doing, discussing whether or not the Academy Awards accurately represent the tastes of contemporary audiences. </p>
+                <p>You will be given two Best Picture nominees from the last decade. Your job is to choose which one has the higher aggregate audience score (based on online review platforms)</p>
+                <p>You also have the option to play based on Critic scores, rather than audience scores. This can be toggled in the top right.</p>
+
+                <button id="playBtn">Got it. Let's Play!</button>
             </div>
         </div>
 
         <!-- Game -->
         <div class="headersection">
-            <div style="width:25%;">Back Button</div>
+            <div style="width:25%;"></div>
             <div style="width:50%;">
-                <h1 style="text-align:center;"> Which of these Best Picture Nominees is preferred by General Audiences?</h1>
+                <h1 style="text-align:center;" id="audienceText"> Which of these <span style='color:#e5aa3b; font-weight:900;'>Best Picture Nominees</span> is preferred by <span style='color:#e5aa3b; font-weight:900;'>General Audiences?</span></h1>
                 <h2 style="text-align:center; font-size:15px;"><em>The general audience score for each film is an aggregate from iMDB, RT Audience Score and MC Audience Score</em></h2>
 
             </div>
@@ -57,11 +60,13 @@
                     <p id="movie2Score"></p>
                 </div>
             </div>
-            <div style="width:25%;">
+            <div style="width:25%; display:flex;justify-content: start;margin-left: 25px;flex-direction: row;">
                 <div id="scorecounter">
                     <h2>
-                        Score: <span id="score">0</span>
+                        Score: 
                     </h2>
+                    <p id="score">0</p>
+
                 </div>
             </div>
         </div>
@@ -73,7 +78,7 @@
         </div>
 
         <div class="footer">
-            <div style="width:25%;"> <p> Dataset Used </p></div>
+            <div style="width:25%; display:flex; justify-content:center !important;"> <a href="https://www.themoviedb.org/" target="_blank"><p style="text-decoration:underline;"> Dataset Used </p></a> <p style="padding-left:25px;padding-right:25px;"> | </p><a href="https://docs.google.com/spreadsheets/d/1ew_dNLJAWqjtf7buMTbCJVTBiWBmtnxXx1bNWL7GR0U/edit?usp=sharing" target="_blank"><p style="text-decoration:underline;"> Posters Sourced From TMDB </p></a></div>
             <div id="bottomtext" style="width:50%;">
                 <div><p style="font-size:20px;">OSCARS GUESSING GAME</p> </div>
                 <img src="/images/Oscars Logo.png" style="height:75px;padding-left:15px; padding-right:15px;"></img>
@@ -81,7 +86,9 @@
                 <div id="result"></div>
             </div>
 
-            <div style="width:25%;"> Github links</div>
+            <div style="width:25%;"> <div style="display:flex; width:50%; justify-content:space-evenly;">
+                <a href="https://github.com/zmorehouse/Academy-Awards-Game" target="_blank"><i class="fa-brands fa-github"></i></a> <a href="https://zmorehouse.com/" target="_blank"><i class="fa-solid fa-link"></i></a> <a href="https://www.linkedin.com/in/zmorehouse" target="_blank"><i class="fa-brands fa-linkedin"></i></a> <a href="https://letterboxd.com/zmorehouse/" target="_blank"> <i class="fa-brands fa-letterboxd"></i></a>
+            </div></div>
 
         </div>
     </div>

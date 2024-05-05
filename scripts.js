@@ -592,11 +592,11 @@ document.addEventListener("DOMContentLoaded", function() {
     toggleSwitch.addEventListener('change', function() {
         if (this.checked) {
             // Audience score enabled
-            audienceText.textContent = "Which of these Best Picture Nominees is preferred by General Audiences?";
+            audienceText.innerHTML = "Which of these <span style='color:#e5aa3b; font-weight:900;'>Best Picture Nominees</span> is preferred by <span style='color:#e5aa3b; font-weight:900;'>General Audiences?</span>";
             audienceSubText.textContent = "The general audience score for each film is an aggregate from iMDB, RT Audience Score and MC Audience Score";
         } else {
             // Audience score disabled
-            audienceText.textContent = "Which of these Best Picture Nominees is preferred by Critics?";
+            audienceText.innerHTML = "Which of these <span style='color:#e5aa3b; font-weight:900;'>Best Picture Nominees</span> is preferred by <span style='color:#e5aa3b; font-weight:900;'>Critics?</span>";
             audienceSubText.textContent = "The critic score for each film is an aggregate from Letterboxd, RT Critic Score and MC Critic Score";
         }
     });
