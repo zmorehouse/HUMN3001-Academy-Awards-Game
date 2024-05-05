@@ -491,7 +491,7 @@ let movies = [
     }
 ];
 
-let audience_score_enabled = false;
+let audience_score_enabled = true;
 
 let score = 0;
 
