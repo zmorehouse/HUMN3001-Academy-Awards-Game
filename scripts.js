@@ -55,7 +55,7 @@ let movies = [
         "critic_score": 86
     },
     {
-        "title": "Birdman or (The Unexpected Virtue of Ignorance)",
+        "title": "Birdman",
         "audience_score": 80,
         "critic_score": 87
     },
@@ -562,6 +562,7 @@ preloadMoviePosters().then(() => {
     // Introduce a delay of 2 seconds before hiding the loading overlay and showing the content
     setTimeout(() => {
         // Hide loading overlay and show content
+        
         document.getElementById('overlay').style.display = 'none';
         document.getElementById('content').style.display = 'block';
     }, 2000); // 2000 milliseconds = 2 seconds
@@ -616,11 +617,13 @@ document.getElementById('tryAgainBtn').addEventListener('click', function () {
 
         setTimeout(() => {
             initialiseFunction();
-        }, 150); 
+            removeActive(container);
+            
+        }, 200); 
 
         setTimeout(() => {
-            document.getElementById('movie1Score').innerText = '';
-            document.getElementById('movie2Score').innerText = '';
+            resetScores();
+
             container.classList.remove('hidden');
         }, 500);
     });
@@ -633,12 +636,17 @@ document.getElementById('nextbutton').addEventListener('click', function () {
     movieContainers.forEach(function (container) {
         container.classList.add('hidden');
         choiceMade = false;
+
+        setTimeout(() => {
+            initialiseFunction();
+            removeActive(container);
+
+        }, 200); 
+
         // After a short delay, remove the hidden class to trigger the animation back to scale 1
         setTimeout(() => {
-            // Populate the score fields with the scores of the movies
-            document.getElementById('movie1Score').innerText = '';
-            document.getElementById('movie2Score').innerText = '';
-            initialiseFunction();
+            resetScores();
+
             container.classList.remove('hidden');
         }, 500); // Adjust the delay as needed
     });
@@ -678,9 +686,7 @@ function initialiseFunction() {
     });
 }
 
-
 function checkUserChoice(userChoiceIndex) {
-
     let scoreToCompare1, scoreToCompare2;
 
     // Determine which score to compare based on audience_score_enabled
@@ -696,26 +702,85 @@ function checkUserChoice(userChoiceIndex) {
     if (scoreToCompare1 > scoreToCompare2 && userChoiceIndex === 0) {
         // User is correct
         score++;
-
         document.getElementById('nextbutton').style.visibility = 'visible'; // Reveal the "Try Again" button
+        document.getElementById('movie1').classList.add('correct');
+        document.getElementById('movie2').classList.add('incorrect');
     } else if (scoreToCompare2 > scoreToCompare1 && userChoiceIndex === 1) {
         // User is correct
         score++;
         document.getElementById('nextbutton').style.visibility = 'visible'; // Reveal the "Try Again" button
-
-    } else {
+        document.getElementById('movie2').classList.add('correct');
+        document.getElementById('movie1').classList.add('incorrect');
+    } else if (scoreToCompare2 > scoreToCompare1 && userChoiceIndex === 0){
         // User is wrong
         score = 0;
         document.getElementById('tryAgainBtn').style.visibility = 'visible'; // Reveal the "Try Again" button
+        document.getElementById('movie2').classList.add('correct');
+        document.getElementById('movie1').classList.add('incorrect');
     }
+    else if (scoreToCompare1 > scoreToCompare2 && userChoiceIndex === 1){
+        // User is wrong
+        score = 0;
+        document.getElementById('movie1').classList.add('correct');
+        document.getElementById('movie2').classList.add('incorrect');
+        document.getElementById('tryAgainBtn').style.visibility = 'visible'; // Reveal the "Try Again" button
 
+    } else {
+        // Tie!
+        score++;
+        document.getElementById('movie1').classList.add('tie');
+        document.getElementById('movie2').classList.add('tie');
+        document.getElementById('nextbutton').style.visibility = 'visible'; // Reveal the "Try Again" button
+
+    }
 
     // Update the score displayed on the page
     document.getElementById('score').innerText = score;
 
     // Populate the score fields with the scores of the movies
+
     document.getElementById('movie1Score').innerText = scoreToCompare1;
     document.getElementById('movie2Score').innerText = scoreToCompare2;
 
     choiceMade = true;
+}
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Add event listener to each movie container
+    const movieContainers = document.querySelectorAll('.movie');
+    movieContainers.forEach(function(container) {
+        container.addEventListener('click', function() {
+            addActive(container);
+            toggleActiveOthers(container);
+        });
+    });
+});
+
+function addActive(container) {
+    container.classList.add('active');
+}
+
+function removeActive(container) {
+    container.classList.remove('active');
+    container.classList.remove('incorrect');
+    container.classList.remove('correct');
+    container.classList.remove('tie');
+
+    
+}
+
+function toggleActiveOthers(clickedContainer) {
+    const movieContainers = document.querySelectorAll('.movie');
+    movieContainers.forEach(function(container) {
+        if (container !== clickedContainer) {
+            addActive(container);
+        }
+    });
+}
+
+function resetScores() {
+    document.getElementById('movie1Score').innerText = '';
+    document.getElementById('movie2Score').innerText = '';
+    
 }

@@ -82,6 +82,7 @@
    
    
    .movie {
+    position:relative;
     display:flex;
     flex-direction:column-reverse;
     padding:25px;
@@ -96,6 +97,65 @@
    background-color:black;
 
    }
+
+   .movie::before {
+    content: "";
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    transition: height 0.5s ease;
+    z-index: -1;
+    border-radius:15px;
+   }
+
+   .movie.active:before {
+    height: 100%;
+    position:absolute;
+    z-index:9;
+    top: 0;
+    left: 0;
+  }
+
+  
+  .movie.correct.active:before {
+    background-color: green;
+  }
+
+  .movie.incorrect.active:before {
+    background-color: rgb(164, 0, 0);
+  }
+
+  .movie.tie.active:before {
+    background-color: #e5aa3b;
+  }
+
+
+  .moviescore {
+    position:absolute;
+    top:25px;
+    left:25px;
+    font-size:50px;
+    font-weight:900;
+    z-index:10;
+  }
+  
+  .moviescore {
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+  
+  
 
    #moviePoster1, #moviePoster2 {
     width:100%;
@@ -286,7 +346,7 @@
      border-color:white;
    }
    
-   #playBtn {
+   #playBtn, #tryAgainBtn, #nextbutton {
      background-color: #e5aa3b;
      color: #fff;
      border: none;
@@ -303,8 +363,12 @@
    }
 
  
-   #playBtn:hover {
+   #playBtn:hover, #tryAgainBtn:hover, #nextbutton:hover {
      background-color: #252525;
+   }
+
+   #nextbutton, #tryAgainBtn {
+     position:absolute;
    }
    
    .footer {
