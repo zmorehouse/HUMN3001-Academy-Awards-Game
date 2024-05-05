@@ -512,7 +512,7 @@ function getRandomMovies() {
 async function fetchMoviePoster(movieTitle) {
     const apiKey = '352d50e929f67aea3a7aca5c902400dd'; // Replace 'YOUR_API_KEY' with your actual API key from TMDB
     const apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(movieTitle)}`;
-    
+
     try {
         const response = await fetch(apiUrl);
         const data = await response.json();
@@ -522,7 +522,7 @@ async function fetchMoviePoster(movieTitle) {
             // Assuming the first result is the most relevant one
             const movie = data.results[0];
             const posterPath = movie.poster_path;
-            
+
             if (posterPath) {
                 // Construct the full URL for the poster
                 return `https://image.tmdb.org/t/p/w500/${posterPath}`;
@@ -553,7 +553,7 @@ function hidePopup() {
     document.getElementById('popupOverlay').style.display = 'none';
 }
 
-document.getElementById('playBtn').addEventListener('click', function() {
+document.getElementById('playBtn').addEventListener('click', function () {
     hidePopup();
 
 });
@@ -566,11 +566,11 @@ preloadMoviePosters().then(() => {
         document.getElementById('content').style.display = 'block';
     }, 2000); // 2000 milliseconds = 2 seconds
     // Call displayRandomMovies to initially display two random movies
-initialiseFunction();
+    initialiseFunction();
 });
 
 // Add event listener to the toggle switch
-document.getElementById('audienceScoreToggle').addEventListener('change', function() {
+document.getElementById('audienceScoreToggle').addEventListener('change', function () {
     audience_score_enabled = this.checked; // Update audience_score_enabled based on the toggle switch state
 
     if (audience_score_enabled) {
@@ -584,12 +584,12 @@ document.getElementById('audienceScoreToggle').addEventListener('change', functi
 
 window.onload = displayPopup;
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const toggleSwitch = document.getElementById('audienceScoreToggle');
     const audienceText = document.querySelector('.headersection h1');
     const audienceSubText = document.querySelector('.headersection h2 em');
 
-    toggleSwitch.addEventListener('change', function() {
+    toggleSwitch.addEventListener('change', function () {
         if (this.checked) {
             // Audience score enabled
             audienceText.innerHTML = "Which of these <span style='color:#e5aa3b; font-weight:900;'>Best Picture Nominees</span> is preferred by <span style='color:#e5aa3b; font-weight:900;'>General Audiences?</span>";
@@ -602,42 +602,43 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-document.getElementById('tryAgainBtn').addEventListener('click', function() {
+document.getElementById('tryAgainBtn').addEventListener('click', function () {
     score = 0;
     document.getElementById('score').innerText = score;
     document.getElementById('tryAgainBtn').style.visibility = 'hidden'; // Hide the "Try Again" button
     choiceMade = false;
 
     const movieContainers = document.querySelectorAll('.movie');
-    
+
     // Apply the hidden class to initiate the scaling animation for each movie container
-    movieContainers.forEach(function(container) {
+    movieContainers.forEach(function (container) {
         container.classList.add('hidden');
-        
-        // After a short delay, remove the hidden class to trigger the animation back to scale 1
+
         setTimeout(() => {
-                    // Populate the score fields with the scores of the movies
-        document.getElementById('movie1Score').innerText = '';
-        document.getElementById('movie2Score').innerText = '';
-        initialiseFunction();
+            initialiseFunction();
+        }, 150); 
+
+        setTimeout(() => {
+            document.getElementById('movie1Score').innerText = '';
+            document.getElementById('movie2Score').innerText = '';
             container.classList.remove('hidden');
-        }, 500); // Adjust the delay as needed
+        }, 500);
     });
 });
 
-document.getElementById('nextbutton').addEventListener('click', function() {
+document.getElementById('nextbutton').addEventListener('click', function () {
     const movieContainers = document.querySelectorAll('.movie');
-    
+
     // Apply the hidden class to initiate the scaling animation for each movie container
-    movieContainers.forEach(function(container) {
+    movieContainers.forEach(function (container) {
         container.classList.add('hidden');
         choiceMade = false;
         // After a short delay, remove the hidden class to trigger the animation back to scale 1
         setTimeout(() => {
-                    // Populate the score fields with the scores of the movies
-        document.getElementById('movie1Score').innerText = '';
-        document.getElementById('movie2Score').innerText = '';
-        initialiseFunction();
+            // Populate the score fields with the scores of the movies
+            document.getElementById('movie1Score').innerText = '';
+            document.getElementById('movie2Score').innerText = '';
+            initialiseFunction();
             container.classList.remove('hidden');
         }, 500); // Adjust the delay as needed
     });
@@ -652,13 +653,13 @@ function initialiseFunction() {
     // Update movie titles
     document.getElementById('movieTitle1').innerText = movie1.title;
     document.getElementById('movieTitle2').innerText = movie2.title;
-    
+
     // Update movie posters
     document.getElementById('moviePoster1').src = movie1.posterUrl;
     document.getElementById('moviePoster2').src = movie2.posterUrl;
 
     // Add event listeners to each movie container
-    document.getElementById('movie1').addEventListener('click', function() {
+    document.getElementById('movie1').addEventListener('click', function () {
         if (choiceMade) {
             return;
         } else {
@@ -667,7 +668,7 @@ function initialiseFunction() {
         }
     });
 
-    document.getElementById('movie2').addEventListener('click', function() {
+    document.getElementById('movie2').addEventListener('click', function () {
         if (choiceMade) {
             return;
         } else {
@@ -679,9 +680,9 @@ function initialiseFunction() {
 
 
 function checkUserChoice(userChoiceIndex) {
-    
+
     let scoreToCompare1, scoreToCompare2;
-    
+
     // Determine which score to compare based on audience_score_enabled
     if (audience_score_enabled) {
         scoreToCompare1 = movie1.audience_score;
@@ -695,13 +696,13 @@ function checkUserChoice(userChoiceIndex) {
     if (scoreToCompare1 > scoreToCompare2 && userChoiceIndex === 0) {
         // User is correct
         score++;
-        
+
         document.getElementById('nextbutton').style.visibility = 'visible'; // Reveal the "Try Again" button
     } else if (scoreToCompare2 > scoreToCompare1 && userChoiceIndex === 1) {
         // User is correct
         score++;
         document.getElementById('nextbutton').style.visibility = 'visible'; // Reveal the "Try Again" button
-        
+
     } else {
         // User is wrong
         score = 0;
