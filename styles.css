@@ -345,6 +345,10 @@
      border-width:1px;
      border-color:white;
    }
+
+   #playBtn {
+         margin-top:25px;
+   }
    
    #playBtn, #tryAgainBtn, #nextbutton {
      background-color: #e5aa3b;
@@ -357,7 +361,7 @@
      font-family:"Gotham";
      width:225px;
      font-weight:900;
-     margin-top:25px;
+
      transition:0.2s;
 
    }
@@ -375,6 +379,7 @@
     position:fixed;
     bottom:0;
     width:100%;
+
    }
 
    #content {
