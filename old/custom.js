@@ -30,9 +30,9 @@ function displayRandomMovies() {
     document.getElementById('moviePoster2').src = randomMovie2.posterUrl;
 }
 
-
+import movieAPI from './apikey.js';
 async function fetchMoviePoster(movieTitle) {
-    const apiKey = '352d50e929f67aea3a7aca5c902400dd'; // Replace 'YOUR_API_KEY' with your actual API key from TMDB
+    const apiKey = movieAPI; // Replace 'YOUR_API_KEY' with your actual API key from TMDB
     const apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(movieTitle)}`;
     
     try {
