@@ -583,7 +583,9 @@ document.getElementById('audienceScoreToggle').addEventListener('change', functi
     }
 });
 
-window.onload = displayPopup;
+document.addEventListener("DOMContentLoaded", function() {
+    displayPopup();
+});
 
 document.addEventListener("DOMContentLoaded", function () {
     const toggleSwitch = document.getElementById('audienceScoreToggle');
@@ -736,7 +738,6 @@ function checkUserChoice(userChoiceIndex) {
 
     // Update the score displayed on the page
     document.getElementById('score').innerText = score;
-
     updateHighestScore(score);
 
     // Populate the score fields with the scores of the movies

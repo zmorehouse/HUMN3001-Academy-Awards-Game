@@ -446,3 +446,26 @@ margin-top:15px;
 #score {
 	margin-top: 10px !important;
 }
+
+.responsivenotice {
+  display:none;
+}
+
+@media only screen and (max-width: 1024px) {
+  .responsivenotice {
+    margin:0px;
+    position: absolute;
+    background-color: black;
+    height:100vh;
+    padding:50px;
+    z-index: 100 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .responsivenotice p {
+    font-size:40px;
+    text-align:center;
+  }
+}
