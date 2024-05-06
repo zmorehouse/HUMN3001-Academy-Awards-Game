@@ -451,6 +451,14 @@ margin-top:15px;
   display:none;
 }
 
+.movie h2 {
+  max-width:350px;
+}
+
+.movie {
+  min-height:675px;
+
+}
 @media only screen and (max-width: 1024px) {
   .responsivenotice {
     margin:0px;
@@ -469,3 +477,4 @@ margin-top:15px;
     text-align:center;
   }
 }
+

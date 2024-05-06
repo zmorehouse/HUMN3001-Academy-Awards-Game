@@ -55,7 +55,7 @@ let movies = [
         "critic_score": 86
     },
     {
-        "title": "Birdman",
+        "title": "Birdman or (The Unexpected Virtue of Ignorance)",
         "audience_score": 80,
         "critic_score": 87
     },
